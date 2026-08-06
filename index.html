@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bumper Humans | Bubble Soccer Rentals in Santa Clara, CA</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta name="description" content="Bumper Humans rents bubble soccer equipment for parties, corporate events, and team outings in Santa Clara and the South Bay. Suits, inflators, and gear — dropped off at your event and picked up when the fun's over.">
+<style>
+  :root {
+    --navy: #1b5e20;        /* deep forest green (was navy) */
+    --teal: #66bb6a;        /* mid green */
+    --teal-dark: #388e3c;   /* darker mid green for text on light bg */
+    --coral: #ff6b57;       /* orange accent kept */
+    --coral-dark: #e5533f;
+    --sky: #e8f5e9;         /* pale green */
+    --white: #ffffff;
+    --gray: #5a6472;
+    --radius: 16px;
+    --shadow: 0 8px 30px rgba(27, 94, 32, 0.10);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--navy);
+    background: var(--white);
+    line-height: 1.6;
+  }
+  h1, h2, h3 { line-height: 1.2; }
+  section { padding: 80px 24px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    display: inline-block;
+    color: var(--teal-dark);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  .section-title { font-size: 2.2rem; margin-bottom: 16px; }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(27,94,32,.18); }
+  .btn-primary { background: var(--coral); color: var(--white); }
+  .btn-primary:hover { background: var(--coral-dark); }
+  .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 12px rgba(27,94,32,.08);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); }
+  .logo-text { font-size: 1.25rem; font-weight: 800; }
+  .logo-text span { color: var(--teal); }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--navy); font-weight: 600; font-size: .95rem; }
+  .nav-links a:hover { color: var(--teal-dark); }
+  .nav-cta { background: var(--coral); color: var(--white) !important; padding: 10px 22px; border-radius: 999px; }
+  .nav-cta:hover { background: var(--coral-dark); color: var(--white) !important; }
+  .hamburger { display: none; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--navy); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    background: linear-gradient(135deg, var(--navy) 0%, #2e7d32 55%, var(--teal-dark) 100%);
+    color: var(--white);
+    text-align: center;
+    padding: 110px 24px 130px;
+    overflow: hidden;
+  }
+  .hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 18px; }
+  .hero h1 span { color: #a5d6a7; }
+  .hero p { font-size: 1.2rem; max-width: 640px; margin: 0 auto 34px; color: #e0f0e1; }
+  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .bubble {
+    position: absolute; top: 0; left: 0; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.25);
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), rgba(255,255,255,.03));
+    pointer-events: none; will-change: transform;
+  }
+  .hero .container { position: relative; z-index: 1; }
+  /* One bubble gets a translucent soccer-ball texture */
+  .bubble.soccer {
+    background:
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g stroke="rgba(255,255,255,0.45)" stroke-width="2.5" fill="none" stroke-linecap="round"><line x1="50" y1="34" x2="50" y2="4"/><line x1="34.8" y1="45.1" x2="6.3" y2="35.9"/><line x1="40.6" y1="62.9" x2="23.0" y2="87.2"/><line x1="59.4" y1="62.9" x2="77.0" y2="87.2"/><line x1="65.2" y1="45.1" x2="93.7" y2="35.9"/></g><polygon points="50,34 34.8,45.1 40.6,62.9 59.4,62.9 65.2,45.1" fill="rgba(255,255,255,0.30)" stroke="rgba(255,255,255,0.45)" stroke-width="2"/></svg>') center/100% 100% no-repeat,
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), rgba(255,255,255,.03));
+  }
+
+  /* ---------- What is ---------- */
+  .what { background: var(--white); }
+  .what-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .what p { color: var(--gray); margin-bottom: 14px; }
+  .media-placeholder {
+    background: var(--sky);
+    border: 2px dashed var(--teal);
+    border-radius: var(--radius);
+    min-height: 300px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--teal-dark); font-weight: 600; text-align: center; padding: 20px;
+  }
+
+  /* ---------- Packages ---------- */
+  .packages { background: var(--sky); text-align: center; }
+  .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; margin-top: 40px; }
+  .pkg-card {
+    background: var(--white); border-radius: var(--radius); padding: 36px 24px;
+    box-shadow: var(--shadow); position: relative;
+  }
+  .pkg-card.popular { border: 3px solid var(--coral); }
+  .popular-tag {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--coral); color: var(--white); font-size: .75rem; font-weight: 700;
+    padding: 4px 14px; border-radius: 999px; letter-spacing: 1px;
+  }
+  .pkg-hours { font-size: 1.05rem; font-weight: 700; color: var(--teal-dark); text-transform: uppercase; letter-spacing: 1px; }
+  .pkg-price { font-size: 2.4rem; font-weight: 800; margin: 10px 0 4px; }
+  .pkg-card p { color: var(--gray); font-size: .92rem; }
+  .pkg-note { margin-top: 28px; color: var(--gray); max-width: 640px; margin-left: auto; margin-right: auto; font-size: .95rem; }
+
+  /* ---------- Add-ons ---------- */
+  .addons { background: var(--white); text-align: center; }
+  .addon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 36px; }
+  .addon-card {
+    background: var(--sky); border-radius: var(--radius); padding: 28px 20px;
+  }
+  .addon-card .emoji { font-size: 2rem; }
+  .addon-card h3 { margin: 8px 0 4px; font-size: 1.05rem; }
+  .addon-card .price { color: var(--coral-dark); font-weight: 800; font-size: 1.2rem; }
+
+  /* ---------- Included / service area ---------- */
+  .included { background: var(--navy); color: var(--white); }
+  .included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .included h2 { color: var(--white); }
+  .included ul { list-style: none; margin-top: 18px; }
+  .included li { padding: 10px 0 10px 34px; position: relative; color: #e0f0e1; }
+  .included li::before { content: "✓"; position: absolute; left: 0; color: #a5d6a7; font-weight: 800; }
+  .included .fine-print { margin-top: 18px; font-size: .88rem; color: #a3c2a5; }
+
+  /* ---------- How it works ---------- */
+  .how { background: var(--white); text-align: center; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; margin-top: 40px; }
+  .step {
+    background: var(--sky); border-radius: var(--radius); padding: 32px 22px; text-align: left; position: relative;
+  }
+  .step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--coral); color: var(--white); font-weight: 800; font-size: 1.1rem;
+    margin-bottom: 14px;
+  }
+  .step h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .step p { color: var(--gray); font-size: .92rem; }
+
+  /* ---------- Occasions ---------- */
+  .occasions { background: var(--white); text-align: center; }
+  .occ-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 18px; margin-top: 36px; }
+  .occ-card {
+    border: 2px solid var(--sky); border-radius: var(--radius); padding: 26px 16px;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .occ-card:hover { border-color: var(--teal); transform: translateY(-4px); }
+  .occ-card .emoji { font-size: 2.2rem; }
+  .occ-card h3 { font-size: 1rem; margin-top: 10px; }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials { background: var(--sky); text-align: center; }
+  .quote-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+  .quote-card { background: var(--white); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); text-align: left; }
+  .quote-card .stars { color: #f4b400; font-size: 1.1rem; letter-spacing: 2px; }
+  .quote-card p { color: var(--gray); margin: 12px 0 16px; font-style: italic; }
+  .quote-card .name { font-weight: 700; }
+
+  /* ---------- Gallery ---------- */
+  .gallery { background: var(--white); text-align: center; }
+  .gal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 36px; }
+  .gal-grid .media-placeholder { min-height: 180px; }
+
+  /* ---------- Contact ---------- */
+  .contact { background: linear-gradient(135deg, var(--teal-dark), var(--navy)); color: var(--white); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
+  .contact h2 { color: var(--white); }
+  .contact p { color: #e0f0e1; margin-bottom: 14px; }
+  .contact a { color: #a5d6a7; }
+  form { background: var(--white); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  label { display: block; font-weight: 600; font-size: .85rem; color: var(--navy); margin: 12px 0 4px; }
+  input, select, textarea {
+    width: 100%; padding: 11px 14px; border: 1.5px solid #d6dde6; border-radius: 10px;
+    font-size: .95rem; font-family: inherit; color: var(--navy);
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--teal); }
+  form .btn { width: 100%; margin-top: 20px; }
+  .form-success { display: none; text-align: center; color: var(--teal-dark); font-weight: 700; margin-top: 14px; }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--navy); color: #a3c2a5; text-align: center; padding: 36px 24px; font-size: .9rem; }
+  footer .logo-text { color: var(--white); }
+  .socials { margin: 14px 0; display: flex; gap: 18px; justify-content: center; }
+  .socials a { color: #a3c2a5; text-decoration: none; font-weight: 600; }
+  .socials a:hover { color: var(--white); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 820px) {
+    .what-grid, .included-grid, .contact-grid, .form-row { grid-template-columns: 1fr; }
+    .nav-links {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--white); flex-direction: column; padding: 18px 24px; gap: 16px;
+      box-shadow: 0 12px 20px rgba(27,94,32,.12);
+    }
+    .nav-links.open { display: flex; }
+    .hamburger { display: block; }
+    section { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#top" aria-label="Bumper Humans home">
+      <img src="bumper-humans-1-horizontal.svg" alt="Bumper Humans" style="height:48px;width:auto;display:block">
+    </a>
+    <button class="hamburger" aria-label="Toggle menu" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#what">What Is It</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#addons">Add-Ons</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#occasions">Events</a></li>
+      <li><a class="nav-cta" href="#contact">Book Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="bubble"></div><div class="bubble soccer"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  <div class="container">
+    <h1>Bounce. Collide. <span>Laugh Until It Hurts.</span></h1>
+    <p>Bumper Humans rents everything you need for bubble soccer in Santa Clara and the South Bay. We drop off the suits and gear, you run the mayhem — then we haul it all away.</p>
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="#contact">Book Your Event</a>
+      <a class="btn btn-outline" href="#packages">See Packages</a>
+    </div>
+  </div>
+</header>
+
+<section class="what" id="what">
+  <div class="container what-grid">
+    <div>
+      <span class="section-label">The Game</span>
+      <h2 class="section-title">What Is Bubble Soccer?</h2>
+      <p>Picture soccer — except every player is strapped inside a giant inflatable bubble from the knees up. Bumping, bouncing, and full-speed collisions aren't fouls; they're the whole point.</p>
+      <p>The padded suits absorb every impact, so players of any age or skill level can crash into each other, roll across the field, and pop right back up unhurt. No experience needed — if you can run (or wobble), you can play.</p>
+      <p>Games run in short, high-energy rounds so everyone gets plenty of field time — and plenty of time to catch their breath between fits of laughter.</p>
+    </div>
+    <img src="bubble-soccer-kids.png" alt="Kids in bubble suits playing bubble soccer at a park while families watch" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow);display:block">
+
+  </div>
+</section>
+
+<section class="packages" id="packages">
+  <div class="container">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-title">Package Rates</h2>
+    <p style="color:var(--gray)">Equipment rental packages — we deliver, you play.</p>
+    <div class="pkg-grid">
+      <div class="pkg-card">
+        <div class="pkg-hours">1 Hour</div>
+        <div class="pkg-price">$200</div>
+        <p>Equipment rental only with manual inflator. Includes 6 bubble suits and a regular soccer ball.</p>
+      </div>
+      <div class="pkg-card popular">
+        <div class="popular-tag">Most Popular</div>
+        <div class="pkg-hours">3 Hours</div>
+        <div class="pkg-price">$400</div>
+        <p>Equipment rental with powered inflators. Includes 10 bubble suits plus a 5-foot giant soccer ball.</p>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-hours">24-Hour Flex</div>
+        <div class="pkg-price">$1000</div>
+        <p>Equipment rental with powered inflators and a megaphone. Best for full-day events.</p>
+      </div>
+    </div>
+    <p class="pkg-note">Need more suits or a custom time block? <a href="#contact" style="color:var(--teal-dark);font-weight:700">Contact us</a> for a quote tailored to your event.</p>
+  </div>
+</section>
+
+<section class="addons" id="addons">
+  <div class="container">
+    <span class="section-label">Extras</span>
+    <h2 class="section-title">Lawn Game Add-Ons</h2>
+    <p style="color:var(--gray)">Keep the sidelines busy while players rotate in and out. Add-ons run the full length of your rental.</p>
+    <div class="addon-grid">
+      <div class="addon-card"><div class="emoji">🎯</div><h3>Cornhole</h3><div class="price">$45</div></div>
+      <div class="addon-card"><div class="emoji">🏐</div><h3>Spikeball</h3><div class="price">$50</div></div>
+      <div class="addon-card"><div class="emoji">🥏</div><h3>Frisbee</h3><div class="price">$10</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="included">
+  <div class="container included-grid">
+    <div>
+      <span class="section-label" style="color:#a5d6a7">Full Service</span>
+      <h2 class="section-title">Everything Handled For You</h2>
+      <ul>
+        <li>Drop-off and pick-up at your event address</li>
+        <li>Commercial-grade bubble suits, sanitized between events</li>
+        <li>Inflators sized to your package — manual or powered</li>
+        <li>Equipment verification check at handoff</li>
+        <li>Game ideas included — soccer, last-bubble-standing, sumo & more</li>
+      </ul>
+    </div>
+    <div>
+      <span class="section-label" style="color:#a5d6a7">Where We Play</span>
+      <h2 class="section-title">Serving the Peninsula</h2>
+      <p style="color:#e0f0e1;margin-top:14px">Based in Santa Clara, CA, we offer free delivery within a 25-mile radius and serve events across the greater South Bay and Peninsula. Outside our service radius? No problem — a delivery charge applies based on distance.</p>
+      <p style="color:#e0f0e1;margin-top:10px">We play at parks, gyms, backyards, and corporate campuses — anywhere with a flat grass or turf area roughly the size of a basketball court.</p>
+      <p class="fine-print">Venue reservations and any required park permits are the responsibility of the renter. Happy to suggest parks that have worked well for past events.</p>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="container">
+    <span class="section-label">The Process</span>
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Book & Pay</h3>
+        <p>Place your order — inside our service radius, or outside it with a distance-based delivery charge. Payment is due in full at booking, by online payment or purchase order.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We Drop Off</h3>
+        <p>Choose your drop-off address and time. A team member runs a verification check on all equipment with you, then hands it off.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>You Play</h3>
+        <p>Suit up and let the collisions commence. Your party runs the games your way, on your schedule.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>We Pick Up</h3>
+        <p>When time's up, we collect the equipment at the original drop-off address — or a separate address you specify.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="occasions" id="occasions">
+  <div class="container">
+    <span class="section-label">Occasions</span>
+    <h2 class="section-title">Built For Any Gathering</h2>
+    <div class="occ-grid">
+      <div class="occ-card"><div class="emoji">🏢</div><h3>Corporate Events</h3></div>
+      <div class="occ-card"><div class="emoji">🤝</div><h3>Team Building</h3></div>
+      <div class="occ-card"><div class="emoji">🎂</div><h3>Birthday Parties</h3></div>
+      <div class="occ-card"><div class="emoji">👨‍👩‍👧‍👦</div><h3>Family Reunions</h3></div>
+      <div class="occ-card"><div class="emoji">🎓</div><h3>School & Youth Groups</h3></div>
+      <div class="occ-card"><div class="emoji">🎉</div><h3>Just Because</h3></div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="container">
+    <span class="section-label">Reviews</span>
+    <h2 class="section-title">What Players Say</h2>
+    <div class="quote-grid">
+      <div class="quote-card">
+        <div class="stars">★★★★★</div>
+        <p>"Rented the 3-hour package for my son's 9th birthday and the kids didn't stop laughing the entire time. Drop-off and pickup were right on schedule."</p>
+        <div class="name">— Laryl Dang, Kids' Birthday Party</div>
+      </div>
+      <div class="quote-card">
+        <div class="stars">★★★★★</div>
+        <p>"Booked this for our quarterly team offsite. Easiest vendor I've worked with — paid by PO, equipment was clean and checked at handoff. Already planning the rematch."</p>
+        <div class="name">— Ariol Columbianus, Corporate Team Building</div>
+      </div>
+      <div class="quote-card">
+        <div class="stars">★★★★★</div>
+        <p>"Got the 24-hour flex rental for our college reunion weekend. The giant soccer ball was the highlight — twenty years later and we're still competitive."</p>
+        <div class="name">— Humphrey Ling, College Reunion</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery section temporarily removed — restore by uncommenting and re-adding the nav link
+<section class="gallery" id="gallery">
+  <div class="container">
+    <span class="section-label">Gallery</span>
+    <h2 class="section-title">Happy Customers</h2>
+    <div class="gal-grid">
+      <div class="media-placeholder">📷 Photo 1</div>
+      <div class="media-placeholder">📷 Photo 2</div>
+      <div class="media-placeholder">📷 Photo 3</div>
+      <div class="media-placeholder">📷 Photo 4</div>
+      <div class="media-placeholder">📷 Photo 5</div>
+      <div class="media-placeholder">📷 Photo 6</div>
+    </div>
+  </div>
+</section>
+-->
+
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div>
+      <span class="section-label" style="color:#a5d6a7">Book Now</span>
+      <h2 class="section-title">Let's Get You Rolling</h2>
+      <p>Tell us about your event and we'll confirm availability and pricing — usually within one business day.</p>
+      <p>Email: <a href="mailto:support@bumperhumans.com">support@bumperhumans.com</a></p>
+      <p style="font-size:.9rem;color:#a3c2a5">Email is the fastest way to reach us during event season.</p>
+    </div>
+    <form id="bookForm" onsubmit="return handleSubmit(event)">
+      <div class="form-row">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" type="text" required placeholder="Your name">
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" required placeholder="you@email.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label for="date">Event Date</label>
+          <input id="date" type="date" required>
+        </div>
+        <div>
+          <label for="package">Package</label>
+          <select id="package">
+            <option>1 Hour — $200</option>
+            <option selected>3 Hours — $400</option>
+            <option>24-Hour Flex — $1000</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <label for="message">Tell us about your event</label>
+      <textarea id="message" rows="4" placeholder="Location, group size, occasion..."></textarea>
+      <button class="btn btn-primary" type="submit">Request Booking</button>
+      <div class="form-success" id="formSuccess">✓ Thanks! We'll be in touch shortly.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="logo-text">Bumper <span style="color:#a5d6a7">Humans</span></div>
+  <div style="font-size:.85rem;margin-top:2px">Bubble Soccer Rentals</div>
+  <div class="socials">
+    <a href="#" aria-label="Instagram">Instagram</a>
+    <a href="#" aria-label="Facebook">Facebook</a>
+    <a href="#" aria-label="Yelp">Yelp</a>
+  </div>
+  <div>© 2026 Bumper Humans · Santa Clara, CA · All rights reserved</div>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    // Placeholder: wire this to your form backend (Formspree, Netlify Forms, etc.)
+    document.getElementById('formSuccess').style.display = 'block';
+    document.getElementById('bookForm').reset();
+    return false;
+  }
+  // Close mobile menu after clicking a link
+  document.querySelectorAll('#navLinks a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+  );
+
+  // ----- Hero bubbles: bounce off walls and each other, confined to the hero -----
+  (function () {
+    const hero = document.querySelector('.hero');
+    const els = Array.from(hero.querySelectorAll('.bubble'));
+    const radii = [70, 40, 90, 30, 55, 45];
+    let W = hero.clientWidth, H = hero.clientHeight;
+
+    const bubbles = els.map((el, i) => {
+      const r = radii[i % radii.length];
+      el.style.width = el.style.height = (r * 2) + 'px';
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 30 + Math.random() * 30; // px/s — gentle, ambient pace
+      return {
+        el, r,
+        m: r * r, // mass ~ area
+        x: r + Math.random() * (W - 2 * r),
+        y: r + Math.random() * (H - 2 * r),
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed
+      };
+    });
+
+    // Nudge apart any initial overlaps
+    for (let pass = 0; pass < 20; pass++) {
+      for (let i = 0; i < bubbles.length; i++) for (let j = i + 1; j < bubbles.length; j++) {
+        const a = bubbles[i], b = bubbles[j];
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const d = Math.hypot(dx, dy) || 1, min = a.r + b.r;
+        if (d < min) {
+          const push = (min - d) / 2, nx = dx / d, ny = dy / d;
+          a.x -= nx * push; a.y -= ny * push;
+          b.x += nx * push; b.y += ny * push;
+        }
+      }
+    }
+
+    window.addEventListener('resize', () => { W = hero.clientWidth; H = hero.clientHeight; });
+
+    let last = performance.now();
+    function tick(now) {
+      const dt = Math.min((now - last) / 1000, 0.05); // clamp for tab-switch jumps
+      last = now;
+
+      // Move + wall bounce
+      for (const b of bubbles) {
+        b.x += b.vx * dt; b.y += b.vy * dt;
+        if (b.x - b.r < 0)  { b.x = b.r;      b.vx =  Math.abs(b.vx); }
+        if (b.x + b.r > W)  { b.x = W - b.r;  b.vx = -Math.abs(b.vx); }
+        if (b.y - b.r < 0)  { b.y = b.r;      b.vy =  Math.abs(b.vy); }
+        if (b.y + b.r > H)  { b.y = H - b.r;  b.vy = -Math.abs(b.vy); }
+      }
+
+      // Pairwise elastic collisions
+      for (let i = 0; i < bubbles.length; i++) for (let j = i + 1; j < bubbles.length; j++) {
+        const a = bubbles[i], b = bubbles[j];
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const d = Math.hypot(dx, dy) || 1, min = a.r + b.r;
+        if (d < min) {
+          const nx = dx / d, ny = dy / d;
+          // Separate overlap
+          const push = (min - d) / 2;
+          a.x -= nx * push; a.y -= ny * push;
+          b.x += nx * push; b.y += ny * push;
+          // Impulse along normal (1D elastic collision in normal direction)
+          const rel = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
+          if (rel < 0) {
+            const imp = (2 * rel) / (a.m + b.m);
+            a.vx += imp * b.m * nx; a.vy += imp * b.m * ny;
+            b.vx -= imp * a.m * nx; b.vy -= imp * a.m * ny;
+          }
+        }
+      }
+
+      for (const b of bubbles)
+        b.el.style.transform = `translate(${(b.x - b.r).toFixed(1)}px, ${(b.y - b.r).toFixed(1)}px)`;
+
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+</script>
+
+</body>
+</html>
